@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="LiveOdia">
+<head>
+   
+    <title>Cyber Tech</title>
+    <base href="/" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width; initial-scale = 1.0; maximum-scale=1.0; user-scalable=no" /> 
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+</head>
+<body ng-controller="indexController">
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <header id="header">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#/home"><img src="images/logo.png" alt=""></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav custom_nav">
+                        <li ><a href="home">ହୋମ ପେଜ୍</a></li>
+                        <li><a href="about">ଆମ ବିଷୟରେ</a></li>
+                        <li><a href="#">ଯୋଗାଯୋଗ</a></li>
+                        <li><a href="#">ବିଜ୍ଞାପନ</a></li>
+                        <li ng-hide="!authentication.isAuth"><a href="admin">Admin</a></li>
+                    </ul>
+                    <ul class="nav navbar-right navbar-nav">
+                        <li ng-hide="authentication.isAuth"><a href="login">Login</a></li>
+                        <li ng-hide="!authentication.isAuth"><a href="" ng-click="logOut()">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="search">
+                    <a class="search_icon" href="#"><i class="fa fa-search"></i></a>
+                    <form action="#">
+                        <input class="search_bar" type="text" placeholder="Search here">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section id="content">
+        <div class="row" ng-hide="hideit ==true">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="featured_slider">
+                    <h2 class="featured_title">On Featured</h2>
+                    <div class="slick_slider">
+                        <div class="single_iteam">
+                            <img src="images/300x250x1.jpg" alt="" />
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x2.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x3.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x4.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x5.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x6.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x3.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                        <div class="single_iteam">
+                            <img src="images/300x250x5.jpg" alt="">
+                            <h2><a class="slider_tittle" href="#">Fusce eu nulla semper porttitor felis sit amet</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-view=""></div>
+    </section>
+    <footer id="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm3">
+                        <div class="footer_widget wow fadeInLeftBig">
+                            <h2>Category</h2>
+                            <ul class="labels_nav">
+                                <li><a href="#">Games</a></li>
+                                <li><a href="#">Gallery</a></li>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Business</a></li>
+                                <li><a href="#">Slider</a></li>
+                                <li><a href="#">Life &amp; Style</a></li>
+                                <li><a href="#">Ver</a></li>
+                                <li><a href="#">Sports</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm3">
+                        <div class="footer_widget">
+                            <h2>Popular Post</h2>
+                            <ul class="ppost_nav wow fadeInLeftBig">
+                                <li>
+                                    <div class="media">
+                                        <a href="pages/single_page.html" class="media-left"><img alt="" src="images/70x70.jpg"></a>
+                                        <div class="media-body"><a href="pages/single_page.html" class="catg_title">Aliquam malesuada diam eget turpis varius</a></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <a href="pages/single_page.html" class="media-left"><img alt="" src="images/70x70.jpg"></a>
+                                        <div class="media-body"><a href="#" class="catg_title">Aliquam malesuada diam eget turpis varius</a></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <a href="pages/single_page.html" class="media-left"><img alt="" src="images/70x70.jpg"></a>
+                                        <div class="media-body"><a href="#" class="catg_title">Aliquam malesuada diam eget turpis varius</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm3">
+                        <div class="footer_widget wow fadeInRightBig">
+                            <h2>Latest Images</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm3">
+                        <div class="footer_widget wow fadeInRightBig">
+                            <h2>Subscription For Latest News</h2>
+                            <form action="#" class="subscribe_form">
+                                <p id="subscribe-text">We promise, we will only send you awesome stuff which will make your day!</p>
+                                <p id="subscribe-email">
+                                    <input type="text" placeholder="Email Address" name="email">
+                                </p>
+                                <p id="subscribe-submit">
+                                    <input type="submit" value="Submit">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <p class="copyright">Copyright &copy; 2016 <a href="#/home">Live Odia</a></p>
+                <p class="developer">Developed By LiveTech</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="App/app.js"></script>
+
+    <!--Controllers-->
+    <script src="App/Controllers/homeController.js"></script>
+    <script src="App/Controllers/indexController.js"></script>
+    <script src="App/Controllers/aboutController.js"></script>
+    <script src="App/Controllers/detailnewsController.js"></script>
+    <script src="App/Controllers/adminController.js"></script>
+    <script src="App/Controllers/detailHotnewsController.js"></script>
+    <script src="App/Controllers/hotnewsController.js"></script>
+    <script src="App/Controllers/loginController.js"></script>
+
+    <!--Directives-->
+    <script src="App/Directives/imageDirective.js"></script>
+    <script src="App/Directives/imageShowDirective.js"></script>
+    <script src="App/Directives/imageUpload.js"></script>
+    <script src="App/Directives/myTickerDirective.js"></script>
+    <!--Services-->
+    <script src="App/Services/imageUploadService.js"></script>
+    <script src="App/Services/homeServiceFactory.js"></script>
+    <script src="App/Services/detailnewsServiceFactory.js"></script>
+    <script src="App/Services/HotnewsServiceFactory.js"></script>
+    <script src="App/Services/sharedService.js"></script>
+    <script src="App/Services/loginServiceFactory.js"></script>
+    <script src="App/Services/adminServiceFactory.js"></script>
+    <!--Providers-->
+    
+</body>
+</html>

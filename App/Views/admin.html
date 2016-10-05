@@ -1,0 +1,108 @@
+﻿
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h2>Hot News Upload</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-sm-12">
+                <div class="contact_area wow fadeInLeftBig">
+                    <div class="col-lg-2"><h5>Select Category</h5>:</div>
+                    <div class="col-lg-2">
+                        <select class="form-control" name="userRole" id="userRole" ng-change="changeOption();"
+                                ng-options="option.TITLE for option in hnewsTitle.HotNewsTitle track by option.HID"
+                                ng-model="selectedOption"></select>
+                    </div>
+                    <div class="col-lg-3"><h5>Add New Category</h5>:</div>
+                    <div class="col-lg-3">
+                        <input class="form-control" type="text" placeholder="Category Name" ng-model="hotnews.cname">
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" class="btn-sm btn-success" ng-click="AddNewCategory(hotnews.cname)">Save New Category</button>
+                    </div>
+                    <input class="form-control" type="text" placeholder="News Title" ng-model="hotnews.title">
+                    <br />
+                    <input class="form-control" type="text" placeholder="News Subheading" ng-model="hotnews.hsub">
+                    <textarea class="form-control" cols="30" rows="10" placeholder="Hot News" ng-model="hotnews.hnewsTotal"></textarea>
+                    <form enctype="multipart/form-data" name="form1" ng-submit="submitHotNews()">
+                        <div class="col-lg-11">
+                            <input type="file" image-upload="myFile1" id="file1" />
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="submit" value="Add Hotnews" class="btn-sm btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h2>New Story Upload</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-sm-12">
+                <div class="contact_area wow fadeInLeftBig">
+                    <input class="form-control" type="text" placeholder="News Title" ng-model="Newstory.ntitle">
+                    <br />
+                    <input class="form-control" type="text" placeholder="News Subheading" ng-model="Newstory.nsub">
+                    <textarea class="form-control" cols="30" rows="10" placeholder="Hot News" ng-model="Newstory.newstory"></textarea>
+                    <form enctype="multipart/form-data" name="form1" ng-submit="submitNewstory()">
+                        <div class="col-lg-11">
+                            <input type="file" image-upload="myFile2" id="file2" />
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="submit" value="Add Newstory" class="btn-sm btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h2>Top News Upload</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-sm-12">
+                <div class="contact_area wow fadeInLeftBig">
+                    <input class="form-control" type="text" placeholder="News Title" ng-model="Topnews.ttitle">
+                    <br />
+                    <input class="form-control" type="text" placeholder="News Title" ng-model="Topnews.tsub">
+                    <textarea class="form-control" cols="30" rows="10" placeholder="Hot News" ng-model="Topnews.topnews"></textarea>
+                    <form enctype="multipart/form-data" name="form1" ng-submit="submitTopNews()">
+                        <div class="col-lg-11">
+                            <input type="file" image-upload="myFile3" id="file3" />
+                        </div>
+                        <div class="col-lg-1">
+                            <input type="submit" value="Add Topnews" class="btn-sm btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<div class="row">
+    <div class="col-md-12">
+        <div class="col-lg-2">
+            Title:<input type="text" name="title" ng-model="Newstory.ntitle" />
+        </div>
+        <div class="col-lg-6">
+            Detail News:<textarea name="hotNews" ></textarea>
+        </div>
+        <div class="col-lg-6">
+            <form enctype="multipart/form-data" name="form1" >
+                <div class="col-lg-4">
+                    <input type="file" image-upload="myFile" />
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" value="Add Newstory" class="btn-sm btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->
