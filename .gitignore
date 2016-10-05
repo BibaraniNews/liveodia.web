@@ -9,3 +9,12 @@
 /Web.xml
 /Web.Debug.xml
 /Web.Release.xml
+
+ApplicationInsights.config
+LiveOdia.csproj
+LiveOdia.csproj.user
+Web.Debug.config
+Web.Release.config
+Web.config
+packages.config
+packages
