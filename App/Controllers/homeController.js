@@ -9,14 +9,13 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
     $scope.currentPage = 1;
     $scope.numPerPage = 10;
     $scope.maxSize = 5;
-    //$route.reload();
     $scope.fullnews = [];
     $scope.cleanData = [];
     $scope.topnews = [];
     $scope.hotnews = [];
     $scope.newstory = [];
 
-    $scope.order_item = "tpriority";
+    $scope.order_item = "priority";
     $scope.order_reverse = false;
 
     $scope.fnews = {
@@ -40,7 +39,7 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "newstory": null,
                   "title": null,
                   "nsub": null,
-                  "npriority": null
+                  "priority": null
               }
           }, {
               "hotnews": {
@@ -54,14 +53,14 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "topnews": "Kolkatta",
                   "title": "Kolkatta",
                   "tsub": "Kolkatta",
-                  "tpriority": 5
+                  "priority": 5
               },
               "newstory": {
                   "nnid": 0,
                   "newstory": null,
                   "title": null,
                   "nsub": null,
-                  "npriority": null
+                  "priority": null
               }
           },
           {
@@ -76,14 +75,14 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "topnews": "Odisha",
                   "title": "Odisha",
                   "tsub": "Odisha",
-                  "tpriority": 2
+                  "priority": 2
               },
               "newstory": {
                   "nnid": 0,
                   "newstory": null,
                   "title": null,
                   "nsub": null,
-                  "npriority": null
+                  "priority": null
               }
           }, {
               "hotnews": {
@@ -97,14 +96,14 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "topnews": null,
                   "title": null,
                   "tsub": null,
-                  "tpriority": null
+                  "priority": null
               },
               "newstory": {
                   "nnid": 5,
-                  "newstory": "sadjalsdjkasd",
-                  "title": "asjklksjdasd",
-                  "nsub": "askdloqiweuq",
-                  "npriority": 2
+                  "newstory": "India",
+                  "title": "India News",
+                  "nsub": "india news Test",
+                  "priority": 2
               }
           }, {
               "hotnews": {
@@ -118,17 +117,16 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "topnews": "Bihar",
                   "title": "Bihar",
                   "tsub": "Bihar",
-                  "tpriority": 3
+                  "priority": 3
               },
               "newstory": {
                   "nnid": 0,
                   "newstory": null,
                   "title": null,
                   "nsub": null,
-                  "npriority": null
+                  "priority": null
               }
-          },
-          {
+          }, {
               "hotnews": {
                   "hnid": 0,
                   "hotnews": null,
@@ -140,19 +138,19 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
                   "topnews": null,
                   "title": null,
                   "tsub": null,
-                  "tpriority": null
+                  "priority": null
               },
               "newstory": {
                   "nnid": 1,
-                  "newstory": "sajdsadjald",
-                  "title": "askdjalskdjla",
-                  "nsub": "aksdjsalsdjald",
-                  "npriority": 1
+                  "newstory": "America",
+                  "title": "USA",
+                  "nsub": "London",
+                  "priority": 1
               }
           }
         ]
     };
-   
+
     $scope.FormatData = function () {
         debugger;
         $scope.fullnews.push($scope.fnews);
@@ -161,8 +159,6 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
         $scope.topnews = _.filter($scope.cleanData[0].fullnews, "topnews");
         $scope.newstory = _.filter($scope.cleanData[0].fullnews, "newstory");
         $scope.hotnews = _.filter($scope.cleanData[0].fullnews, "hotnews");
-        console.log(JSON.stringify($scope.topnews, null, 2));
-
     };
 
     function pruneEmpty(obj) {
@@ -231,21 +227,31 @@ LiveOdiaApp.controller('homeController', ['$scope', '$rootScope', '$location', '
             };
         })
     };
-    
+
     $scope.getAllNews();
     $scope.FormatData();
 
 }]).filter('orderObjectBy', function () {
-    debugger;
     return function (items, field, reverse) {
-        debugger;
         var filtered = [];
         angular.forEach(items, function (item) {
             filtered.push(item);
         });
-        filtered.sort(function (a, b) {
-            return (a.topnews[field] > b.topnews[field] ? 1 : -1);
-        });
+        if (items[0].newstory) {
+            filtered.sort(function (a, b) {
+                return (a.newstory[field] > b.newstory[field] ? 1 : -1);
+            });
+        }
+        if (items[0].topnews) {
+            filtered.sort(function (a, b) {
+                return (a.topnews[field] > b.topnews[field] ? 1 : -1);
+            });
+        }
+        //if (items.topnews) {//For hot News
+        //    filtered.sort(function (a, b) {
+        //        return (a.topnews[field] > b.topnews[field] ? 1 : -1);
+        //    });
+        //}
         if (reverse) filtered.reverse();
         return filtered;
     };

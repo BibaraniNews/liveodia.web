@@ -19,12 +19,12 @@
             <div class="middle_content">
                 <h2>New Stories</h2>
                 <ul class="featured_nav">
-                    <li class="wow fadeInDown" ng-repeat="news in filteredNews">
+                    <li class="wow fadeInDown" ng-repeat="news in newstory |orderObjectBy :order_item:order_reverse">
                         <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.imgurl}}" alt=""></a></figure>
                         <article class="featured_article">
                             <!--<div class="article_category"><a href="#">Technology <i class="fa fa-angle-right"></i></a><a href="#">Mobile <i class="fa fa-angle-right"></i></a><a href="#">Samsung</a></div>-->
-                            <h2 class="article_titile"><a class="odia-font" href="#/detailnews/{{news.newsid}}">{{news.title}}</a></h2>
-                            <p class="odia-font">{{news.newstory}}</p>
+                            <h2 class="article_titile"><a class="odia-font" href="#/detailnews/{{news.newstory.nnid}}">{{news.newstory.title}}</a></h2>
+                            <p class="odia-font">{{news.newstory.newstory}}</p>
                         </article>
                     </li>
                 </ul>
