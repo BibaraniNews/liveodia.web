@@ -47,14 +47,14 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="mostPopular">
                             <ul class="ppost_nav wow fadeInDown">
-                                <li>
+                                <li ng-repeat="news in topnews | orderObjectBy :order_item:order_reverse">
                                     <div class="media">
                                         <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
+                                        <div class="media-body"><a class="catg_title" href="#">{{news.topnews.topnews}}</a></div>
                                     </div>
                                 </li>
 
-                                <li>
+                                <!--<li>
                                     <div class="media">
                                         <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
                                         <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
@@ -83,7 +83,7 @@
                                         <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
                                         <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
                                     </div>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="recentComent">
@@ -178,4 +178,3 @@
         </div>
     </div>
 </div>
-{{news}}
