@@ -37,8 +37,8 @@ LiveOdiaApp.config(['$routeProvider', '$httpProvider', '$locationProvider', func
         templateUrl: (_isNotMobile) ? 'App/Views/detailnews.html' : 'App/MobileViews/detailnews.html'
     });
     $routeProvider.when('/detailhotnews/:id', {
-        controller: (_isNotMobile) ? 'hotnewsController' : 'hotnewsController',
-        templateUrl: (_isNotMobile) ? 'App/Views/hotnews.html' : 'App/MobileViews/hotnews.html'
+        controller: (_isNotMobile) ? 'detailHotnewsController' : 'detailHotnewsController',
+        templateUrl: (_isNotMobile) ? 'App/Views/hotdetailnews.html' : 'App/MobileViews/hotdetailnews.html'
     });
     $routeProvider.when('/admin', {
         controller: 'adminController',

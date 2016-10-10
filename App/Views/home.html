@@ -8,7 +8,7 @@
                         <li class="odia-font" ng-repeat="hnews in hotNews">
                             <figure class="effect-lily">
                                 <a href="pages/single_page.html"><img src="images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="#/hotnewsdetail/{{hnews.HID}}">{{hnews.TITLE}}</a></figcaption>
+                                <figcaption><a ng-click="getHotFullNews(hnews.ndid)">{{hnews.newsdiv}}</a></figcaption>
                             </figure>
                         </li>
                     </ul>
@@ -16,22 +16,50 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-8">
-            <div class="middle_content">
+            <div class="middle_content" ng-show="hnews!=false">
                 <h2>New Stories</h2>
                 <ul class="featured_nav">
-                    <li class="wow fadeInDown" ng-repeat="news in newstory |orderObjectBy :order_item:order_reverse">
-                        <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.imgurl}}" alt=""></a></figure>
+                    <li class="wow fadeInDown" ng-repeat="news in hnewsDetail">
+                        <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.himageurl}}" alt=""></a></figure>
                         <article class="featured_article">
-                            <!--<div class="article_category"><a href="#">Technology <i class="fa fa-angle-right"></i></a><a href="#">Mobile <i class="fa fa-angle-right"></i></a><a href="#">Samsung</a></div>-->
-                            <h2 class="article_titile"><a class="odia-font" href="#/detailnews/{{news.newstory.nnid}}">{{news.newstory.title}}</a></h2>
-                            <p class="odia-font">{{news.newstory.newstory}}</p>
+                            <h2 class="article_titile"><a class="odia-font" href="detailhotnews/{{news.hnid}}">{{news.htitle}}</a></h2>
+                            <h4>{{news.hsub}}</h4>
+                            <p class="odia-font">{{news.hotnews}}</p>
                         </article>
                     </li>
                 </ul>
-                <!--<h4>{{todos.length}} total</h4>
-                <ul>
-                    <li ng-repeat="fnews in filteredNews">{{fnews.text}}</li>
-                </ul>-->
+                <pagination ng-model="currentPage" total-items="newsories.length" max-size="maxSize" boundary-links="true">
+                </pagination>
+            </div>
+            <div class="middle_content" ng-show="tpnews!=false">
+                <h2>New Stories</h2>
+                <ul class="featured_nav">
+                    <li class="wow fadeInDown" ng-repeat="news in tnews">
+                        <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.timageurl}}" alt=""></a></figure>
+                        <article class="featured_article">
+                            <h2 class="article_titile"><a class="odia-font">{{news.ttitle}}</a></h2>
+                            <h4>{{news.tsub}}</h4>
+                            <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i> Wpfreeware</a> <span><i class="fa fa-calendar"></i> {{news.newsdate}}</span> <a href="#"><i class="fa fa-tags"></i> Technology</a></div>
+                            <p class="odia-font">{{news.topnews}}</p>
+                        </article>
+                    </li>
+                </ul>
+                <pagination ng-model="currentPage" total-items="newsories.length" max-size="maxSize" boundary-links="true">
+                </pagination>
+            </div>
+            <div class="middle_content" ng-show="nstory!=false">
+                <h2>New Stories</h2>
+                <ul class="featured_nav">
+                    <li class="wow fadeInDown" ng-repeat="news in newstory">
+                        <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.nimageurl}}" alt=""></a></figure>
+                        <article class="featured_article">
+                            <!--<div class="article_category"><a href="#">Technology <i class="fa fa-angle-right"></i></a><a href="#">Mobile <i class="fa fa-angle-right"></i></a><a href="#">Samsung</a></div>-->
+                            <h2 class="article_titile"><a class="odia-font" href="detailnews/{{news.nsid}}">{{news.ntitle}}</a></h2>
+                            <h4>{{news.nsub}}</h4>
+                            <p class="odia-font">{{news.newstory}}</p>
+                        </article>
+                    </li>
+                </ul>
                 <pagination ng-model="currentPage" total-items="newsories.length" max-size="maxSize" boundary-links="true">
                 </pagination>
             </div>
@@ -47,46 +75,15 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="mostPopular">
                             <ul class="ppost_nav wow fadeInDown">
-                                <li ng-repeat="news in topnews | orderObjectBy :order_item:order_reverse">
+                                <li ng-repeat="news in topstories | orderBy :'-newsid'">
                                     <div class="media">
                                         <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">{{news.topnews.topnews}}</a></div>
+                                        <div class="media-body"><a class="catg_title" href="#" ng-click="getTopNewsByID(news.newsid)">{{news.topnews}}</a></div>
                                     </div>
                                 </li>
-
-                                <!--<li>
-                                    <div class="media">
-                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="media">
-                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
-                                        <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                                    </div>
-                                </li>-->
                             </ul>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="recentComent">
+                        <!--<div role="tabpanel" class="tab-pane fade" id="recentComent">
                             <ul class="ppost_nav wow fadeInDown">
                                 <li>
                                     <div class="media">
@@ -149,7 +146,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="single_widget">

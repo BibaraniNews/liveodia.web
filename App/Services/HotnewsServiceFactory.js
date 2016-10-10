@@ -1,10 +1,8 @@
 ﻿'use strict';
 LiveOdiaApp.factory('HotnewsServiceFactory', ['$http', '$q', function ($http, $q) {
     debugger;
-    var baseService = "http://www.liveodia.co/";
-    //var baseService = "http://localhost:6996/";
-    //var baseService = "http://192.168.1.10:8042/";
-//    var baseService = "http://192.168.1.6:3321/";
+    var baseService = "http://localhost:59485/";
+
     var HotnewsServiceFactory = {};
 
     var _getHotFullNews = function (hnid) {
@@ -51,6 +49,18 @@ LiveOdiaApp.factory('HotnewsServiceFactory', ['$http', '$q', function ($http, $q
         return deffer.promise;
     };
 
+    var _getAllTopNews = function () {
+        debugger;
+        var deffer = $q.defer();
+        $http.get(baseService + 'api/HnewsSummary/').success(function (data, status) {
+            deffer.resolve(data);
+        }).error(function (err, status) {
+            deffer.reject(err);
+        })
+        return deffer.promise;
+    };
+
+    HotnewsServiceFactory.getAllTopNews = _getAllTopNews;
     HotnewsServiceFactory.getHotFullNews = _getHotFullNews;
     HotnewsServiceFactory.getHotFullNewsTitle = _getHotFullNewsTitle;
     HotnewsServiceFactory.getHotNewsSummary = _getHotNewsSummary;

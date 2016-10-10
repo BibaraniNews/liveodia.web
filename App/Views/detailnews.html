@@ -12,42 +12,12 @@
         <div class="col-lg-3 col-md-3 col-sm-4">
             <div class="left_sidebar">
                 <div class="single_widget">
-                    <h2>Post of the month</h2>
+                    <h2>Hot News</h2>
                     <ul class="post_nav">
-                        <li>
+                        <li class="odia-font" ng-repeat="hnews in hnewsTitle">
                             <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="single_page.html">It’s Now An Android World- Feel The Power</a></figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="single_page.html">It’s Now An Android World- Feel The Power</a></figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="#">It’s Now An Android World- Feel The Power</a></figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="#">It’s Now An Android World- Feel The Power</a></figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="single_page.html">It’s Now An Android World- Feel The Power</a></figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="effect-lily">
-                                <a href="single_page.html"><img src="../images/270x150x4.jpg" alt=""></a>
-                                <figcaption><a href="single_page.html">It’s Now An Android World- Feel The Power</a></figcaption>
+                                <a href="pages/single_page.html"><img src="images/270x150x4.jpg" alt=""></a>
+                                <figcaption><a ng-click="getHotNewsByID(hnews.ndid)">{{hnews.newsdiv}}</a></figcaption>
                             </figure>
                         </li>
                     </ul>
@@ -61,15 +31,59 @@
                     <li><a href="#">Technology</a></li>
                     <li class="active">Mobile</li>
                 </ol>
-                <div class="single_page_area">
+                <div class="middle_content" ng-show="hnews!=false">
+                    <h2>New Stories</h2>
+                    <ul class="featured_nav">
+                        <li class="wow fadeInDown" ng-repeat="news in hnewsDetail">
+                            <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.himageurl}}" alt=""></a></figure>
+                            <article class="featured_article">
+                                <h2 class="article_titile"><a class="odia-font" ng-click="getHotNewsSummary(news.hnid)">{{news.htitle}}</a></h2>
+                                <h4>{{news.hsub}}</h4>
+                                <p class="odia-font">{{news.hotnews}}</p>
+                            </article>
+                        </li>
+                    </ul>
+                    <pagination ng-model="currentPage" total-items="newsories.length" max-size="maxSize" boundary-links="true">
+                    </pagination>
+                </div>
+                <div class="single_page_area" ng-show="hnewssummary!=false">
                     <ul class="featured_nav">
                         <li class="wow fadeInDown">
                             <figure class="featured_img"><a href="#"><img src="images/550x400.jpg" alt=""></a></figure>
                             <h2 class="article_titile">
-                                {{detailNews.FullnewsDetail.TITLE}}
+                                {{hnewsDetail[0].htitle}}
                             </h2>
-                            <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i> Wpfreeware</a> <span><i class="fa fa-calendar"></i> 6:49 AM</span> <a href="#"><i class="fa fa-tags"></i> Technology</a></div>
-                            <p class="odia-font">{{detailNews.FullnewsDetail.FullNews}}</p>
+                            <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i> Wpfreeware</a> <span><i class="fa fa-calendar"></i>{{hnewsDetail[0].newsdate}}</span> <a href="#"><i class="fa fa-tags"></i> Technology</a></div>
+                            <p class="odia-font">{{hnewsDetail[0].hotnews}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="middle_content" ng-show="tpnews!=false">
+                    <h2>New Stories</h2>
+                    <ul class="featured_nav">
+                        <li class="wow fadeInDown" ng-repeat="news in tnews">
+                            <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.timageurl}}" alt=""></a></figure>
+                            <article class="featured_article">
+                                <h2 class="article_titile"><a class="odia-font">{{news.ttitle}}</a></h2>
+                                <h4>{{news.tsub}}</h4>
+                                <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i> Wpfreeware</a> <span><i class="fa fa-calendar"></i> {{news.newsdate}}</span> <a href="#"><i class="fa fa-tags"></i> Technology</a></div>
+                                <p class="odia-font">{{news.topnews}}</p>
+                            </article>
+                        </li>
+                    </ul>
+                    <pagination ng-model="currentPage" total-items="newsories.length" max-size="maxSize" boundary-links="true">
+                    </pagination>
+                </div>
+                <div class="single_page_area" ng-show="hnews==true">
+                    <ul class="featured_nav">
+                        <li class="wow fadeInDown">
+                            <figure class="featured_img"><a href="#"><img ng-src="../UploadedImage/{{news.nimageurl}}" alt=""></a></figure>
+                            <h2 class="article_titile">
+                                {{detailNews[0].ntitle}}
+                            </h2>
+                            <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i> Wpfreeware</a> <span><i class="fa fa-calendar"></i>{{detailNews[0].newsdate}}</span> <a href="#"><i class="fa fa-tags"></i> Technology</a></div>
+                            <h4>{{detailNews[0].nsub}}</h4>
+                            <p class="odia-font">{{detailNews[0].newstory}}</p>
                         </li>
                     </ul>
                 </div>
@@ -145,87 +159,45 @@
         <div class="col-lg-3 col-md-3 col-sm-12">
             <div class="right_sidebar">
                 <div class="single_widget">
-                    <h2>Popular Post</h2>
-                    <ul class="ppost_nav wow fadeInDown">
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="#"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="#">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <a class="media-left" href="single_page.html"><img src="../images/70x70.jpg" alt=""></a>
-                                <div class="media-body"><a class="catg_title" href="single_page.html">Aliquam malesuada diam eget turpis varius</a></div>
-                            </div>
-                        </li>
+                    <h2>Popular News</h2>
+                    <ul class="nav nav-tabs custom-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Recent Post</a></li>
+                        <li role="presentation" class=""><a href="#recentComent" aria-controls="messages" role="tab" data-toggle="tab" aria-expanded="false">Recent Comment</a></li>
                     </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="mostPopular">
+                            <ul class="ppost_nav wow fadeInDown">
+                                <li ng-repeat="news in topstories | orderBy :'-newsid'">
+                                    <div class="media">
+                                        <a class="media-left" href="#"><img src="images/70x70.jpg" alt=""></a>
+                                        <div class="media-body"><a class="catg_title" href="#" ng-click="getTopNewsByID(news.newsid)">{{news.topnews}}</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="single_widget">
+                        <h2>Categories</h2>
+                        <ul>
+                            <li class="cat-item"><a href="#">Technology</a></li>
+                            <li class="cat-item"><a href="#">Games</a></li>
+                            <li class="cat-item"><a href="#">Business</a></li>
+                            <li class="cat-item"><a href="#">Gallery</a></li>
+                            <li class="cat-item"><a href="#">Slider</a></li>
+                            <li class="cat-item"><a href="#">Life &amp; Style</a></li>
+                            <li class="cat-item"><a href="#">Sports</a></li>
+                        </ul>
+                    </div>
+                    <div class="single_widget">
+                        <h2>Category Archive</h2>
+                        <select class="catgArchive">
+                            <option>Select Category</option>
+                            <option>Life styles</option>
+                            <option>Sports</option>
+                            <option>Technology</option>
+                            <option>Treads</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
